@@ -56,23 +56,27 @@
       <div class="hero-visual" aria-label="SpendTrack app preview">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
         <div class="float-card float-card-top"><span class="float-icon mint">↗</span><span><small>Monthly insight</small><strong>Spending, understood.</strong></span></div>
+        <article class="insight-chip trend-chip" aria-label="Spending trend chart">
+          <div class="insight-chip-heading"><strong>Spending trend</strong><span>Daily</span></div>
+          <div class="trend-chart"><div class="trend-axis"><span>₹4K</span><span>₹3K</span><span>₹2K</span><span>₹1K</span></div><svg viewBox="0 0 240 104" preserveAspectRatio="none" aria-hidden="true"><path class="trend-grid" d="M0 10H240M0 36H240M0 62H240"/><path class="trend-axes" d="M0 4V88H240"/><path class="trend-line" d="M0 82 C5 78 7 65 13 62 C19 59 21 77 27 82 C34 87 36 49 43 44 C50 39 53 74 60 81 C67 88 72 69 79 67 C86 65 90 81 98 84 C107 87 114 85 121 82 C128 79 132 62 139 58 C147 54 152 79 160 82 C168 85 173 73 178 56 C183 39 184 16 191 13 C200 10 202 67 211 79 C220 91 227 82 233 80 C238 78 238 66 240 65"/></svg></div>
+          <div class="trend-days"><span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div>
+        </article>
         <div class="phone">
           <div class="phone-island"></div>
           <div class="phone-screen">
-            <div class="app-top"><div><span class="app-greeting">Good morning 👋</span><strong>My finances</strong></div><div class="profile-chip">D</div></div>
-            <div class="balance-card">
-              <div class="balance-label">TOTAL BALANCE <span>•••</span></div>
-              <div class="balance-amount">₹24,580<span>.00</span></div>
-              <div class="balance-change"><span>↗ 8.4%</span> <small>vs. last month</small></div>
-              <div class="balance-chart"><svg viewBox="0 0 300 68" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#39E6C0" stop-opacity=".24"/><stop offset="1" stop-color="#39E6C0" stop-opacity="0"/></linearGradient></defs><path d="M0 55 C20 48 25 53 43 38 S70 43 88 31 S117 43 135 25 S163 32 182 21 S211 35 230 18 S264 28 281 10 L300 13 L300 68 L0 68Z" fill="url(#chartFill)"/><path d="M0 55 C20 48 25 53 43 38 S70 43 88 31 S117 43 135 25 S163 32 182 21 S211 35 230 18 S264 28 281 10 L300 13" fill="none" stroke="#39E6C0" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-            </div>
-            <div class="app-section-title"><strong>Spending overview</strong><span>This month⌄</span></div>
-            <div class="spend-row"><div class="spend-ring"><span>₹</span></div><div class="spend-legend"><p><i class="dot dot-mint"></i> Income <b>₹32,000</b></p><p><i class="dot dot-purple"></i> Expenses <b>₹7,420</b></p><p><i class="dot dot-orange"></i> Savings <b>₹17,160</b></p></div></div>
-            <div class="app-section-title recent-title"><strong>Recent transactions</strong><span>See all</span></div>
-            <div class="transaction"><span class="transaction-icon food">☕</span><span class="transaction-name"><b>Cafe coffee</b><small>Food & drink · Today</small></span><strong class="amount-negative">−₹180</strong></div>
-            <div class="transaction"><span class="transaction-icon travel">↗</span><span class="transaction-name"><b>Cab ride</b><small>Transport · Yesterday</small></span><strong class="amount-negative">−₹240</strong></div>
+            <div class="home-header"><div><span class="app-greeting">Hello,</span><strong>DalChand</strong></div><div class="settings-chip" aria-label="Settings">⚙</div></div>
+            <div class="period-tabs" aria-label="Transaction period"><span class="selected">All</span><span>Daily</span><span>Weekly</span><span>Monthly</span></div>
+            <div class="home-summary"><div class="summary-values"><div><span class="summary-label income-label">Income</span><strong>₹ 29,200</strong></div><div><span class="summary-label spent-label">Spent</span><strong>₹ 1,26,579.32</strong></div></div><div class="summary-ring" aria-hidden="true"><span></span></div></div>
+            <div class="home-transactions-heading"><strong>Recent Transactions</strong><span>See All <b>›</b></span></div>
+            <div class="home-transaction"><span class="home-transaction-icon care">♥</span><span class="home-transaction-name"><b>Personal care</b><small>UPI</small></span><span class="home-transaction-amount negative">− ₹ 10<small>Oct 10, 2026</small></span></div>
+            <div class="home-transaction"><span class="home-transaction-icon bonus">♧</span><span class="home-transaction-name"><b>Bonus</b><small>Cash</small></span><span class="home-transaction-amount positive">+ ₹ 1,000<small>Oct 15, 2026</small></span></div>
+            <div class="home-transaction"><span class="home-transaction-icon other">•••</span><span class="home-transaction-name"><b>Other</b><small>Cash</small></span><span class="home-transaction-amount negative">− ₹ 6,000<small>Oct 15, 2026</small></span></div>
           </div>
         </div>
+        <article class="insight-chip category-chip" aria-label="Spending by category">
+          <div class="insight-chip-heading"><strong>Spending by category</strong></div>
+          <div class="category-content"><div class="category-ring"><span><b>₹12.6K</b><small>Total spent</small></span></div><div class="category-legend"><p><i class="category-fees"></i>Fees & charges <b>40%</b></p><p><i class="category-food"></i>Food <b>20%</b></p><p><i class="category-shopping"></i>Shopping <b>17%</b></p><p><i class="category-groceries"></i>Groceries <b>10%</b></p><p><i class="category-bills"></i>Bills <b>8%</b></p></div></div>
+        </article>
         <div class="float-card float-card-bottom"><span class="float-icon purple">✓</span><span><small>Shared expenses</small><strong>Everyone stays in sync.</strong></span></div>
         <div class="visual-glow"></div>
       </div>

@@ -16,6 +16,21 @@ if (menuToggle && nav) {
   }));
 }
 
+const siteHeader = document.querySelector(".site-header");
+if (siteHeader) {
+  let scrollUpdatePending = false;
+  const updateHeaderOnScroll = () => {
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
+    window.requestAnimationFrame(() => {
+      siteHeader.classList.toggle("is-scrolled", window.scrollY > 36);
+      scrollUpdatePending = false;
+    });
+  };
+  window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
+  updateHeaderOnScroll();
+}
+
 const form = document.querySelector("#waitlist-form");
 const emailInput = document.querySelector("#email");
 const message = document.querySelector("#form-message");

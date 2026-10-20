@@ -10,7 +10,7 @@
   const takeaway = root.querySelector(".reports-takeaway span");
   const progress = root.querySelector(".reports-progress");
   const visuals = root.querySelector(".reports-visuals");
-  const categories = [["Fees & charges", "#6fc3a0", "₹5,000", "40%"], ["Food", "#e3b341", "₹2,500", "20%"], ["Shopping", "#a855f7", "₹2,200", "17%"], ["Groceries", "#5aad3f", "₹1,290", "10%"], ["Bills", "#4a90e2", "₹961", "8%"]];
+  const categories = [["Fees & charges", "#6fc3a0", "₹5,000", "40%", "qicon-fees"], ["Food", "#e3b341", "₹2,500", "20%", "qicon-food"], ["Shopping", "#a855f7", "₹2,200", "17%", "qicon-shopping"], ["Groceries", "#5aad3f", "₹1,290", "10%", "qicon-groceries"], ["Bills", "#4a90e2", "₹961", "8%", "qicon-bills"]];
   const steps = [
     ["Income and spent, side by side", "Choose All, Monthly or Yearly, pick a month, and see what came in and what went out. Each number shows the change from the previous month.", "You always know how much is left after spending."],
     ["Insights in plain words", "Instead of making you read charts, SpendTrack writes the key point for you, like which category cost the most.", "The one thing worth noticing this month."],
@@ -19,8 +19,7 @@
     ["Where the money went", "The donut splits your total spend by category with a percentage for each, so the biggest slice stands out.", "Your biggest category at a glance."],
     ["Categories, ranked", "Top categories are ranked by amount with their share of the total, using the same icons and colors as your transactions.", "What to cut first if you want to spend less."]
   ];
-  const legend = categories.map(([n,c,,p]) => `<span><b><i style="background:${c}"></i>${n}</b><strong>${p}</strong></span>`).join("");
-  const rank = categories.map(([n,c,a,p]) => `<div class="demo-rank-row"><span class="demo-icon" style="--c:${c}">${n[0]}</span><div><strong>${n}</strong><div class="demo-track"><i style="--w:${p};--c:${c}"></i></div></div><div><strong>${a}</strong><br><small>${p} of total</small></div></div>`).join("");
+  const rank = categories.map(([n,c,a,p,icon]) => `<div class="demo-rank-row"><span class="demo-icon" style="--c:${c}" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#${icon}"></use></svg></span><div><strong>${n}</strong><div class="demo-track"><i style="--w:${p};--c:${c}"></i></div></div><div><strong>${a}</strong><br><small>${p} of total</small></div></div>`).join("");
   const MONTHS = [["May",9000,4000],["Jun",14000,6200],["Jul",11000,5000],["Aug",18000,7500],["Sep",27600,12619],["Oct",15000,9000]];
   const MONTH_MAX = 30000;
   const money = n => "₹" + n.toLocaleString("en-IN");
@@ -95,12 +94,30 @@
     hit.addEventListener("pointermove", e => show(dayAt(e)));
     hit.addEventListener("pointerleave", () => show(peak));
   }
+  const DONUT = {
+    r: 46, stroke: 18, gap: 0,
+    parts: [["Fees & charges","#6fc3a0",40],["Food","#e3b341",20],["Shopping","#a855f7",17],["Groceries","#5aad3f",10],["Bills","#4a90e2",8],["Other","#5b6469",5]]
+  };
+  function donutHTML() {
+    const C = 2 * Math.PI * DONUT.r;
+    let start = 0;
+    const arcs = DONUT.parts.map(([name, color, pct], i) => {
+      const len = pct / 100 * C;
+      const html = `<circle class="demo-arc" cx="60" cy="60" r="${DONUT.r}" style="--c:${color};--a:${(len - DONUT.gap).toFixed(2)};--b:${(C - len + DONUT.gap).toFixed(2)};--n:${i};stroke-dashoffset:${(-start).toFixed(2)}"/>`;
+      start += len;
+      return html;
+    }).join("");
+    const legendRows = DONUT.parts.map(([name, color, pct]) =>
+      `<span><b><i style="background:${color}"></i>${name}</b><strong>${pct}%</strong></span>`).join("");
+    const label = DONUT.parts.map(([name, , pct]) => `${name} ${pct}%`).join(", ");
+    return `<article class="report-demo report-demo--donut" role="img" aria-label="Spending by category. Total ₹12,619. ${label}."><h3>Spending by Category</h3><div class="demo-cat"><div class="demo-donut" style="--circ:${C.toFixed(2)}"><svg viewBox="0 0 120 120" aria-hidden="true">${arcs}</svg><span>₹12.6K<small>Total Spent</small></span></div><div class="demo-legend">${legendRows}</div></div></article>`;
+  }
   const cards = [
     `<article class="report-demo" role="img" aria-label="Income ₹27,600, spent ₹12,619, left over this month ₹14,981"><div class="demo-pills"><span>All</span><span class="selected">Monthly</span><span>Yearly</span><span class="demo-chip">Sep 2026 <svg class="demo-chev" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="demo-statrow"><div class="demo-stat"><small class="demo-label"><i class="demo-bar"></i>Income</small><strong data-count="27600">₹27,600</strong><em>↗ +0% vs last month</em></div><div class="demo-stat spent"><small class="demo-label"><i class="demo-bar"></i>Spent</small><strong data-count="12619">₹12,619</strong><em>↗ +0% vs last month</em></div></div><div class="demo-leftover"><span>Left over this month</span><strong data-count="14981">₹14,981</strong></div></article>`,
     `<article class="report-demo" role="img" aria-label="Spending insights"><h3>✦ Spending Insights</h3><div class="demo-insight">↘ &nbsp; Your highest spending category is Fees &amp; charges (₹5,000).</div><div class="demo-insight red">↗ &nbsp; You spent ₹12,619 during this period.</div></article>`,
     trendCardHTML(),
     `<article class="report-demo" role="img" aria-label="Income versus spending for the last six months. September: income ₹27,600, spent ₹12,619."><h3>Income vs Spent <span class="demo-chip" style="float:right">Last 6 months</span></h3><div class="demo-legend-row"><span><i></i>Income</span><span><i></i>Spent</span></div><div class="demo-bar-chart">${bars}</div><div class="demo-labels">${monthLabels}</div></article>`,
-    `<article class="report-demo" role="img" aria-label="Spending by category donut chart"><h3>Spending by Category</h3><div class="demo-cat"><div class="demo-donut"><span>₹12.6K<small>Total Spent</small></span></div><div class="demo-legend">${legend}</div></div></article>`,
+    donutHTML(),
     `<article class="report-demo" role="img" aria-label="Top spending categories ranked"><h3>Top Categories</h3><div class="demo-rank">${rank}</div></article>`
   ];
   progress.append("1 / 6");

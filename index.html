@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#07131f">
   <meta name="description" content="SpendTrack helps you understand your money, manage shared expenses, and build better financial habits. Join early access.">
   <title>SpendTrack — Make every rupee count</title>
+  <link rel="icon" type="image/png" href="imges/logo.png">
+  <link rel="apple-touch-icon" href="imges/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,13 +20,7 @@
   <header class="site-header container">
     <a class="brand" href="#" aria-label="SpendTrack home">
       <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" fill="none">
-          <rect x="5" y="8" width="30" height="25" rx="7" stroke="currentColor" stroke-width="2.4"/>
-          <path d="M5 15h30" stroke="currentColor" stroke-width="2.4"/>
-          <path d="M23 23h12v6H23a3 3 0 0 1 0-6Z" fill="#0D2530" stroke="#39E6C0" stroke-width="2"/>
-          <circle cx="25.5" cy="26" r="1.2" fill="#39E6C0"/>
-          <path d="m12 4 4 4 7-5" stroke="#39E6C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="imges/logo.png" alt="">
       </span>
       <span>Spend<span class="brand-accent">Track</span></span>
     </a>
@@ -42,7 +38,7 @@
       <div class="hero-copy">
         <div class="eyebrow"><span class="live-dot"></span> YOUR MONEY, IN BETTER VIEW</div>
         <h1>Make every<br><span class="gradient-text">rupee count.</span></h1>
-        <p class="hero-description">A clearer view of your spending starts here. Track expenses, plan budgets, and stay in sync on shared costs — all in one place.</p>
+        <p class="hero-description">A clearer view of your spending starts here. Track expenses, explore spending reports, and understand your money — all in one place.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#early-access">Join the early access list <span aria-hidden="true">→</span></a>
           <a class="text-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
@@ -86,29 +82,138 @@
     <section class="features-section section container" id="features">
       <div class="section-heading">
         <div class="eyebrow">LESS GUESSING. MORE CLARITY.</div>
-        <h2>Your finances,<br><span class="muted-heading">finally in focus.</span></h2>
-        <p>Small money decisions add up. SpendTrack helps you see the full picture and make your next move with confidence.</p>
+        <h2>More than a list<br><span class="muted-heading">of transactions.</span></h2>
+        <p>SpendTrack brings your everyday payments, useful insights, and longer-term patterns into one clear view.</p>
       </div>
       <div class="feature-grid">
-        <article class="feature-card feature-card-large">
-          <div class="feature-icon mint-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6m0 12h16M7 14l4-4 3 2 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div><h3>Know where it goes</h3><p>Keep your income and expenses organized, with clear categories and an easy-to-read spending history.</p></div>
-          <div class="mini-bars" aria-hidden="true"><span style="height:34%"></span><span style="height:55%"></span><span style="height:44%"></span><span style="height:75%"></span><span style="height:62%"></span><span style="height:92%"></span><span style="height:70%"></span><span style="height:100%"></span><span style="height:79%"></span><span style="height:58%"></span><span style="height:82%"></span><span style="height:66%"></span></div>
+        <article class="feature-card feature-detail-card tracking-detail">
+          <div class="feature-detail-copy"><span class="feature-kicker mint-kicker">01 · EVERYDAY TRACKING</span><h3>Your money,<br>at a glance.</h3><p>See income, spending, and recent transactions together on a home screen that’s easy to scan.</p></div>
+          <div class="feature-ui home-ui" aria-hidden="true">
+            <div class="ui-topline"><span>Hello, <b>DalChand</b></span><span class="ui-settings">⚙</span></div>
+            <div class="ui-filter-row"><b>All</b><span>Daily</span><span>Weekly</span><span>Monthly</span></div>
+            <div class="ui-summary"><div><small>Income</small><strong>₹29,200</strong><small>Spent</small><strong>₹1,26,579</strong></div><div class="ui-donut"></div></div>
+            <div class="ui-list-heading"><b>Recent transactions</b><span>See all&nbsp; ›</span></div>
+            <div class="ui-transaction"><i class="ui-icon purple-tint">♥</i><span><b>Personal care</b><small>UPI · Today</small></span><strong class="negative-amount">− ₹10</strong></div>
+            <div class="ui-transaction"><i class="ui-icon blue-tint">♧</i><span><b>Bonus</b><small>Cash · Today</small></span><strong class="positive-amount">+ ₹1,000</strong></div>
+          </div>
         </article>
-        <article class="feature-card">
-          <div class="feature-icon purple-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M17 7.5c0-1.7-2-3-5-3s-5 1.3-5 3 1.8 2.5 5 3 5 1.3 5 3-2 3-5 3-5-1.3-5-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h3>Budgets that make sense</h3><p>Set spending limits, keep an eye on progress, and make room for what matters.</p>
-          <div class="budget-progress"><span><b>Monthly budget</b><b>68%</b></span><i><em></em></i></div>
+
+        <article class="feature-card feature-detail-card share-detail">
+          <div class="feature-detail-copy"><span class="feature-kicker purple-kicker">02 · QUICK ADD</span><h3>Share a payment.<br>We’ll do the sorting.</h3><p>Choose SpendTrack from your payment app’s share menu. Check the extracted transaction, pick a category, and edit its description before adding it.</p></div>
+          <div class="quickadd-flow" data-quickadd-flow aria-label="UPI payment import preview">
+            <svg class="quickadd-route" aria-hidden="true" preserveAspectRatio="none"><path class="quickadd-route-branches"></path><path class="quickadd-route-base"></path><path class="quickadd-route-progress"></path></svg>
+            <span class="quickadd-route-dot" aria-hidden="true"></span>
+            <div class="quickadd-arrows" aria-hidden="true"><span>›</span><span>›</span><span>›</span><span>›</span><span>›</span></div>
+            <svg class="quickadd-icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <symbol id="qicon-food" viewBox="0 0 24 24"><path d="M4 3v7m3-7v7m-3-4h3m-1.5 4v11M15 3v18m0-18c3 2 4 6 0 9"/></symbol>
+              <symbol id="qicon-shopping" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h10L21 8H6m3 11h.01M17 19h.01"/></symbol>
+              <symbol id="qicon-entertainment" viewBox="0 0 24 24"><path d="M3 8h8v7H3zM13 8h8v7h-8zM3 8l2-4 3 4m5 0 2-4 3 4M7 12h.01m4 1h.01m5-1h.01m4 1h.01"/></symbol>
+              <symbol id="qicon-subscriptions" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM10 9l6 3-6 3z"/></symbol>
+              <symbol id="qicon-travel" viewBox="0 0 24 24"><path d="M5 4h14v13H5zM8 17v3m8-3v3M5 9h14M8 13h.01m8 0h.01"/></symbol>
+              <symbol id="qicon-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3z"/></symbol>
+              <symbol id="qicon-movie" viewBox="0 0 24 24"><path d="M3 7h18v14H3zM3 7l3-4 4 4 4-4 4 4 3-4"/></symbol>
+              <symbol id="qicon-personal" viewBox="0 0 24 24"><path d="M12 20c-7-3-8-9-4-10 2 0 3 2 4 3 1-4 4-7 7-6 2 1 1 8-7 13ZM12 12c0-5 2-8 5-10"/></symbol>
+              <symbol id="qicon-bills" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6m-6 4h6m-6 4h3"/></symbol>
+              <symbol id="qicon-transport" viewBox="0 0 24 24"><path d="m5 11 2-6h10l2 6 2 2v6h-2v-2H5v2H3v-6zm1 0h12M7 15h.01m10 0h.01"/></symbol>
+              <symbol id="qicon-health" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+              <symbol id="qicon-education" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5zm4 3v5c4 3 8 3 12 0v-5m4-3v7"/></symbol>
+              <symbol id="qicon-gifts" viewBox="0 0 24 24"><path d="M3 10h18v11H3zM2 7h20v4H2zm10 0v14m0-14c-6 0-7-5-3-5 2 0 3 3 3 5Zm0 0c6 0 7-5 3-5-2 0-3 3-3 5Z"/></symbol>
+              <symbol id="qicon-fees" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5zm2 2v8m5-8v8m4-8v8m5-8v8M3 21h18"/></symbol>
+              <symbol id="qicon-electronics" viewBox="0 0 24 24"><path d="M3 4h18v13H3zM1 21h22m-13-4 1 4"/></symbol>
+              <symbol id="qicon-groceries" viewBox="0 0 24 24"><path d="m3 9 2 12h14l2-12zm4 0 5-6 5 6m-5 4v3"/></symbol>
+              <symbol id="qicon-income" viewBox="0 0 24 24"><path d="M5 16 16 5m-8 0h8v8"/></symbol>
+              <symbol id="qicon-emi" viewBox="0 0 24 24"><path d="M3 7h18v13H3zM3 7l2-4h14l2 4m-18 4h18m-5 5h2"/></symbol>
+              <symbol id="qicon-other" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+              <symbol id="qicon-bonus" viewBox="0 0 24 24"><path d="M3 10h18v11H3zM2 7h20v4H2zm10 0v14m0-14c-6 0-7-5-3-5 2 0 3 3 3 5Zm0 0c6 0 7-5 3-5-2 0-3 3-3 5Z"/></symbol>
+            </svg>
+            <div class="quickadd-stages quickadd-story">
+              <section class="quickadd-stage source-stage" data-stage="0">
+                <div class="source-options" data-source-options>
+                  <div class="upi-source phonepe-source" data-upi-source="PhonePe" aria-label="PhonePe"><i><img src="imges/phone_pay.png" alt="PhonePe"></i><small>PhonePe</small></div>
+                  <div class="upi-source gpay-source" data-upi-source="Google Pay" aria-label="Google Pay"><i><img src="imges/gpay.png" alt="Google Pay"></i><small>Google Pay</small></div>
+                  <div class="upi-source paytm-source" data-upi-source="Paytm" aria-label="Paytm"><i><img src="imges/paytmm.png" alt="Paytm"></i><small>Paytm</small></div>
+                </div>
+              </section>
+              <section class="quickadd-stage share-button-stage" data-stage="1">
+                <span class="quickadd-node route-node" data-flow-node data-index="02" aria-hidden="true">02</span>
+                <button class="share-action-button" type="button" aria-label="Share transaction"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.3"/></svg></button>
+                <small class="flow-caption">Share payment</small>
+              </section>
+              <section class="quickadd-stage app-icon-stage" data-stage="2">
+                <span class="quickadd-node route-node" data-flow-node data-index="03" aria-hidden="true">03</span>
+                <span class="flow-app-icon"><img src="imges/logo.png" alt=""></span>
+                <b class="flow-caption">SpendTrack</b>
+              </section>
+              <section class="quickadd-stage category-stage" data-stage="3">
+                <span class="quickadd-node route-node" data-flow-node data-index="04" aria-hidden="true">04</span>
+                <div class="quickadd-screen category-screen">
+                  <div class="quickadd-placeholder category-skeleton" aria-hidden="true">
+                    <i class="skeleton-check"></i><span class="skeleton-title"></span><span class="skeleton-subtitle"></span>
+                    <div class="skeleton-category-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="quickadd-content category-select-ui">
+                    <div class="category-prompt"><span class="category-prompt-check">✓</span><b>Choose a category</b><small>Tap to set a category</small></div>
+                    <div class="category-select-grid" data-category-grid>
+                      <span data-category="Food"><svg class="category-icon"><use href="#qicon-food"/></svg>Food</span><span data-category="Shopping"><svg class="category-icon"><use href="#qicon-shopping"/></svg>Shopping</span><span data-category="Entertainment"><svg class="category-icon"><use href="#qicon-entertainment"/></svg>Entertainment</span><span data-category="Subscriptions"><svg class="category-icon"><use href="#qicon-subscriptions"/></svg>Subscriptions</span><span data-category="Travel"><svg class="category-icon"><use href="#qicon-travel"/></svg>Travel</span><span data-category="Home"><svg class="category-icon"><use href="#qicon-home"/></svg>Home</span><span data-category="Movie"><svg class="category-icon"><use href="#qicon-movie"/></svg>Movie</span><span data-category="Personal care"><svg class="category-icon"><use href="#qicon-personal"/></svg>Personal care</span><span data-category="Bills"><svg class="category-icon"><use href="#qicon-bills"/></svg>Bills</span><span data-category="Transport"><svg class="category-icon"><use href="#qicon-transport"/></svg>Transport</span><span data-category="Health"><svg class="category-icon"><use href="#qicon-health"/></svg>Health</span><span data-category="Education"><svg class="category-icon"><use href="#qicon-education"/></svg>Education</span><span data-category="Gifts"><svg class="category-icon"><use href="#qicon-gifts"/></svg>Gifts</span><span data-category="Fees &amp; charges"><svg class="category-icon"><use href="#qicon-fees"/></svg>Fees</span><span data-category="Electronics"><svg class="category-icon"><use href="#qicon-electronics"/></svg>Electronics</span><span data-category="Groceries"><svg class="category-icon"><use href="#qicon-groceries"/></svg>Groceries</span><span data-category="Bonus"><svg class="category-icon"><use href="#qicon-bonus"/></svg>Bonus</span><span data-category="Income"><svg class="category-icon"><use href="#qicon-income"/></svg>Income</span><span data-category="Emi"><svg class="category-icon"><use href="#qicon-emi"/></svg>Emi</span><span data-category="Other"><svg class="category-icon"><use href="#qicon-other"/></svg>Other</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="quickadd-stage confirm-stage" data-stage="4">
+                <span class="quickadd-node route-node" data-flow-node data-index="05" aria-hidden="true">05</span>
+                <div class="quickadd-screen confirm-screen">
+                  <div class="quickadd-placeholder confirm-skeleton" aria-hidden="true">
+                    <i class="skeleton-check"></i><span class="skeleton-title"></span>
+                    <div class="skeleton-transaction"><i></i><span><i></i><i></i></span><b></b></div>
+                    <div class="skeleton-description"><i></i><span><i></i></span></div>
+                    <i class="skeleton-button"></i>
+                  </div>
+                  <div class="quickadd-content confirm-ui">
+                    <div class="confirm-success"><span>✓</span><b>Ready to add</b></div>
+                    <div class="confirm-transaction"><span class="confirm-category-icon"><svg class="category-icon"><use href="#qicon-shopping"/></svg></span><span><b data-tx-category>Shopping</b><small><span data-tx-app>PhonePe</span> · UPI · <span data-tx-date>19 Oct 2026</span> · <span data-tx-time>10:35 am</span></small></span><strong data-tx-amount>− ₹114</strong></div>
+                    <div class="confirm-description"><small>TRANSACTION</small><span data-tx-description>Paid to Flipkart</span></div>
+                    <button class="confirm-done" type="button" data-confirm-done>Done <span>✓</span></button>
+                  </div>
+                </div>
+              </section>
+              <section class="quickadd-stage phone-stage" data-stage="5">
+                <span class="quickadd-node route-node" data-flow-node data-index="06" aria-hidden="true">06</span>
+                <div class="quickadd-screen phone-flow-screen">
+                  <div class="quickadd-content phone-screen-content">
+                  <div class="phone-preview">
+                  <div class="phone-greeting">Hello,<b>DalChand</b></div>
+                  <div class="phone-summary"><div><small>Income</small><strong data-home-income>₹29,200</strong><small>Spent</small><strong data-home-spent>₹1,26,579</strong></div><i class="phone-donut"></i></div>
+                  <div class="phone-list-title">Recent transactions <small>just now</small></div>
+                  <div class="phone-transactions" data-home-transactions>
+                    <div class="phone-transaction"><i class="tx-badge purple-tint"><svg class="category-icon"><use href="#qicon-personal"/></svg></i><span><b>Personal care</b><small>UPI · Today</small></span><strong class="negative-amount">− ₹10</strong></div>
+                    <div class="phone-transaction"><i class="tx-badge blue-tint"><svg class="category-icon"><use href="#qicon-bonus"/></svg></i><span><b>Bonus</b><small>Cash · Today</small></span><strong class="positive-amount">+ ₹1,000</strong></div>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </article>
-        <article class="feature-card">
-          <div class="feature-icon orange-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19c0-3 2.4-5 5.5-5s5.5 2 5.5 5m0-4c3.1-.8 6.5.9 6.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h3>Shared costs, less awkwardness</h3><p>Track group expenses with friends or roommates and make it easier to stay on the same page.</p>
-          <div class="shared-pills"><span>Roommates <b>3</b></span><span>Trip fund <b>4</b></span></div>
+
+        <article class="feature-card feature-detail-card reports-detail">
+          <div class="feature-detail-copy"><span class="feature-kicker blue-kicker">03 · MONTHLY &amp; YEARLY REPORTS</span><h3>Find the patterns<br>behind the numbers.</h3><p>Compare income and spending, follow daily trends, see your top categories, and revisit past periods.</p></div>
+          <div class="feature-ui reports-ui" aria-hidden="true">
+            <div class="report-toolbar"><div class="report-tabs"><span>All</span><b>Monthly</b><span>Yearly</span></div><span class="report-date">Sep 2026&nbsp;⌄</span></div>
+            <div class="report-metric-row"><div><small>INCOME</small><strong>₹27,600</strong><em>↗ +0% vs last month</em></div><div><small>SPENT</small><strong>₹12,619</strong><em>↗ +0% vs last month</em></div></div>
+            <div class="reports-chart-card"><div class="reports-chart-heading"><b>Income vs spent</b><span>Last 6 months</span></div><div class="reports-chart"><i style="--income:20%;--spent:10%"></i><i style="--income:8%;--spent:6%"></i><i style="--income:28%;--spent:18%"></i><i style="--income:45%;--spent:26%"></i><i style="--income:35%;--spent:21%"></i><i style="--income:68%;--spent:37%"></i><i style="--income:42%;--spent:27%"></i><i style="--income:84%;--spent:65%"></i></div><div class="reports-months"><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div></div>
+            <div class="reports-insight"><span>✦</span><p>Your highest spending category is <b>Fees &amp; charges</b>.</p><span class="insight-trend">↘</span></div>
+          </div>
         </article>
-        <article class="feature-card feature-card-wide">
-          <div class="feature-icon blue-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16M8 15v-4m4 4V7m4 8v-6m4 6V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <div class="wide-feature-copy"><h3>Progress you can actually see</h3><p>Turn transactions into useful reports and spending insights, so your habits become easier to understand over time.</p></div>
-          <div class="report-preview" aria-hidden="true"><div class="report-head"><span>Monthly spend</span><b>₹7,420</b></div><div class="report-bars"><i style="height:42%"></i><i style="height:67%"></i><i style="height:50%"></i><i style="height:82%"></i><i style="height:60%"></i><i style="height:100%"></i><i style="height:73%"></i></div><div class="report-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
+
+        <article class="feature-card feature-detail-card shared-detail">
+          <div class="feature-detail-copy"><span class="feature-kicker orange-kicker">04 · IN DEVELOPMENT</span><h3>Make shared costs<br>easier to manage.</h3><p>We’re working on shared expenses to help friends and roommates keep group spending in sync.</p><span class="shared-progress-label"><i></i> Shared expenses are in progress</span></div>
+          <div class="feature-ui shared-ui" aria-hidden="true">
+            <div class="shared-ui-heading"><div><small>SHARED SPACE</small><b>Weekend trip</b></div><span>•••</span></div>
+            <div class="shared-total"><small>Group spending</small><strong>₹8,450</strong><span>Across 4 people</span></div>
+            <div class="shared-people"><span class="person-avatar avatar-mint">D</span><span class="person-avatar avatar-purple">S</span><span class="person-avatar avatar-orange">A</span><span class="person-avatar avatar-blue">R</span><div><b>Trip expenses</b><small>Shared with your group</small></div></div>
+            <div class="shared-placeholder"><span>↗</span><p>Split costs and keep everyone up to date.</p></div>
+          </div>
         </article>
       </div>
     </section>
@@ -122,7 +227,7 @@
         </div>
         <div class="steps">
           <article class="step"><span class="step-number">01</span><div><h3>Add your activity</h3><p>Record income and expenses as life happens.</p></div><span class="step-symbol">＋</span></article>
-          <article class="step"><span class="step-number">02</span><div><h3>See the full picture</h3><p>Understand categories, budgets, and shared costs.</p></div><span class="step-symbol">◉</span></article>
+          <article class="step"><span class="step-number">02</span><div><h3>See the full picture</h3><p>Understand spending categories, reports, and how your habits change over time.</p></div><span class="step-symbol">◉</span></article>
           <article class="step"><span class="step-number">03</span><div><h3>Make your next move</h3><p>Use your insights to plan with more confidence.</p></div><span class="step-symbol">↗</span></article>
         </div>
       </div>
@@ -148,7 +253,7 @@
   </main>
 
   <footer class="site-footer container">
-    <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><rect x="5" y="8" width="30" height="25" rx="7" stroke="currentColor" stroke-width="2.4"/><path d="M5 15h30" stroke="currentColor" stroke-width="2.4"/><path d="M23 23h12v6H23a3 3 0 0 1 0-6Z" fill="#0D2530" stroke="#39E6C0" stroke-width="2"/><circle cx="25.5" cy="26" r="1.2" fill="#39E6C0"/><path d="m12 4 4 4 7-5" stroke="#39E6C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Spend<span class="brand-accent">Track</span></span></a>
+    <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><img src="imges/logo.png" alt=""></span><span>Spend<span class="brand-accent">Track</span></span></a>
     <p>More clarity. Less money stress.</p>
     <div class="footer-links"><a href="#features">Features</a><a href="#early-access">Early access</a><a href="mailto:hello@spendtrack.in">Contact</a></div>
     <span class="copyright">© <span id="year"></span> SpendTrack. Built with intention.</span>

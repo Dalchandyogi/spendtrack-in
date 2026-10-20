@@ -196,15 +196,21 @@
           </div>
         </article>
 
-        <article class="feature-card feature-detail-card reports-detail">
-          <div class="feature-detail-copy"><span class="feature-kicker blue-kicker">03 · MONTHLY &amp; YEARLY REPORTS</span><h3>Find the patterns<br>behind the numbers.</h3><p>Compare income and spending, follow daily trends, see your top categories, and revisit past periods.</p></div>
-          <div class="feature-ui reports-ui" aria-hidden="true">
-            <div class="report-toolbar"><div class="report-tabs"><span>All</span><b>Monthly</b><span>Yearly</span></div><span class="report-date">Sep 2026&nbsp;⌄</span></div>
-            <div class="report-metric-row"><div><small>INCOME</small><strong>₹27,600</strong><em>↗ +0% vs last month</em></div><div><small>SPENT</small><strong>₹12,619</strong><em>↗ +0% vs last month</em></div></div>
-            <div class="reports-chart-card"><div class="reports-chart-heading"><b>Income vs spent</b><span>Last 6 months</span></div><div class="reports-chart"><i style="--income:20%;--spent:10%"></i><i style="--income:8%;--spent:6%"></i><i style="--income:28%;--spent:18%"></i><i style="--income:45%;--spent:26%"></i><i style="--income:35%;--spent:21%"></i><i style="--income:68%;--spent:37%"></i><i style="--income:42%;--spent:27%"></i><i style="--income:84%;--spent:65%"></i></div><div class="reports-months"><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div></div>
-            <div class="reports-insight"><span>✦</span><p>Your highest spending category is <b>Fees &amp; charges</b>.</p><span class="insight-trend">↘</span></div>
-          </div>
-        </article>
+        <div class="reports-track" id="reports">
+          <article class="feature-card feature-detail-card reports-detail">
+            <div class="feature-detail-copy reports-intro"><span class="feature-kicker blue-kicker">03 · MONTHLY &amp; YEARLY REPORTS</span><h3>Find the patterns<br>behind the numbers.</h3></div>
+            <div class="reports-story" aria-label="SpendTrack reports">
+              <div class="reports-stage">
+                <div class="reports-copy">
+                  <div class="reports-progress" role="group" aria-label="Report sections"></div>
+                  <h2></h2><p class="reports-description"></p>
+                  <div class="reports-takeaway"><strong>What it tells you</strong><span></span></div>
+                </div>
+                <div class="reports-visuals" aria-live="polite"></div>
+              </div>
+            </div>
+          </article>
+        </div>
 
         <article class="feature-card feature-detail-card shared-detail">
           <div class="feature-detail-copy"><span class="feature-kicker orange-kicker">04 · IN DEVELOPMENT</span><h3>Make shared costs<br>easier to manage.</h3><p>We’re working on shared expenses to help friends and roommates keep group spending in sync.</p><span class="shared-progress-label"><i></i> Shared expenses are in progress</span></div>
@@ -259,5 +265,6 @@
     <span class="copyright">© <span id="year"></span> SpendTrack. Built with intention.</span>
   </footer>
   <script src="script.js"></script>
+  <script src="reports.js"></script>
 </body>
 </html>

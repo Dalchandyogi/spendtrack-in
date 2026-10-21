@@ -132,6 +132,30 @@ input {
 .footer-links a:hover {
   color: var(--mint);
 }
+.desktop-nav a {
+  position: relative;
+}
+.desktop-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.desktop-nav a.is-active {
+  color: var(--mint);
+}
+.desktop-nav a:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
 .button {
   display: inline-flex;
   align-items: center;
@@ -3763,6 +3787,13 @@ h1 {
   .desktop-nav a {
     padding: 12px;
   }
+  .desktop-nav a::after {
+    display: none;
+  }
+  .desktop-nav a.is-active {
+    background: rgba(57, 230, 192, 0.1);
+    border-radius: 8px;
+  }
   .header-cta {
     margin-left: auto;
     margin-right: 12px;
@@ -3993,6 +4024,9 @@ h1 {
     scroll-behavior: auto !important;
     transition: none !important;
     animation: none !important;
+  }
+  .desktop-nav a::after {
+    transition: none;
   }
 }
 /* ===== Reports: pinned fixed-height box ===== */

@@ -31,6 +31,57 @@ if (siteHeader) {
   updateHeaderOnScroll();
 }
 
+/* Scroll-spy: highlight the nav link of the section currently on screen */
+(() => {
+  const links = [...document.querySelectorAll('.desktop-nav a[href^="#"]')];
+  const items = links
+    .map((link) => ({ link, section: document.getElementById(link.getAttribute("href").slice(1)) }))
+    .filter((item) => item.section)
+    .sort((a, b) => a.section.getBoundingClientRect().top - b.section.getBoundingClientRect().top);
+  if (!items.length) return;
+
+  let current = null;
+  let queued = false;
+
+  const setActive = (item) => {
+    if (item === current) return;
+    current = item;
+    items.forEach((entry) => {
+      const on = entry === item;
+      entry.link.classList.toggle("is-active", on);
+      if (on) entry.link.setAttribute("aria-current", "location");
+      else entry.link.removeAttribute("aria-current");
+    });
+  };
+
+  const update = () => {
+    queued = false;
+    const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 90;
+    const line = pad + 40;
+    let active = null;
+    items.forEach((item) => {
+      const rect = item.section.getBoundingClientRect();
+      if (rect.top <= line && rect.bottom > line) active = item;
+    });
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atBottom) active = items[items.length - 1];
+    setActive(active);
+  };
+
+  const request = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", request, { passive: true });
+  window.addEventListener("resize", request, { passive: true });
+  window.addEventListener("hashchange", request);
+  window.addEventListener("load", request);
+  window.addEventListener("pageshow", request);
+  request();
+})();
+
 const quickAddFlow = document.querySelector("[data-quickadd-flow]");
 if (quickAddFlow) {
   const stages = [...quickAddFlow.querySelectorAll("[data-stage]")];
@@ -361,29 +412,4 @@ if (quickAddFlow) {
   if (typeof reducedMotion.addEventListener === "function") reducedMotion.addEventListener("change", applyMotionPreference);
   else if (typeof reducedMotion.addListener === "function") reducedMotion.addListener(applyMotionPreference);
   applyMotionPreference();
-}
-
-const form = document.querySelector("#waitlist-form");
-const emailInput = document.querySelector("#email");
-const message = document.querySelector("#form-message");
-
-if (form && emailInput && message) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    message.classList.remove("success", "error");
-    if (!validEmail) {
-      message.textContent = "Please enter a valid email address.";
-      message.classList.add("error");
-      emailInput.focus();
-      return;
-    }
-
-    // The landing page is static at this stage. Do not imply that an email
-    // was saved until a real waitlist provider/backend has been connected.
-    message.textContent = "Looks good! The waitlist isn't connected yet, so your email has not been saved. We'll connect signup before launch.";
-    message.classList.add("success");
-  });
 }

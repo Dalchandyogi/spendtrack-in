@@ -3644,6 +3644,16 @@ h1 {
   padding: 10px 8px;
   font-size: 11px;
 }
+.input-wrap input:-webkit-autofill,
+.input-wrap input:-webkit-autofill:hover,
+.input-wrap input:-webkit-autofill:focus,
+.input-wrap input:autofill {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px #0c1b28 inset;
+  box-shadow: 0 0 0 1000px #0c1b28 inset;
+  transition: background-color 9999s ease-out 0s;
+}
 .input-wrap input::placeholder {
   color: #627888;
 }
@@ -3662,7 +3672,7 @@ h1 {
   background: #69f2d5;
 }
 .form-message {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.7;
   color: #8197a5;
   margin: 12px 0 15px;

@@ -413,28 +413,3 @@ if (quickAddFlow) {
   else if (typeof reducedMotion.addListener === "function") reducedMotion.addListener(applyMotionPreference);
   applyMotionPreference();
 }
-
-const form = document.querySelector("#waitlist-form");
-const emailInput = document.querySelector("#email");
-const message = document.querySelector("#form-message");
-
-if (form && emailInput && message) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    message.classList.remove("success", "error");
-    if (!validEmail) {
-      message.textContent = "Please enter a valid email address.";
-      message.classList.add("error");
-      emailInput.focus();
-      return;
-    }
-
-    // The landing page is static at this stage. Do not imply that an email
-    // was saved until a real waitlist provider/backend has been connected.
-    message.textContent = "Looks good! The waitlist isn't connected yet, so your email has not been saved. We'll connect signup before launch.";
-    message.classList.add("success");
-  });
-}

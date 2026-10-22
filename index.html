@@ -149,7 +149,8 @@
             </svg>
             <span class="quickadd-route-dot" aria-hidden="true"></span>
             <div class="quickadd-arrows" aria-hidden="true">
-              <span>›</span><span>›</span><span>›</span><span>›</span><span>›</span></div>
+              <span>›</span><span>›</span><span>›</span><span>›</span><span>›</span>
+            </div>
             <svg class="quickadd-icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
               <symbol id="qicon-food" viewBox="0 0 24 24">
                 <path d="M4 3v7m3-7v7m-3-4h3m-1.5 4v11M15 3v18m0-18c3 2 4 6 0 9" />
@@ -241,7 +242,7 @@
               <section class="quickadd-stage app-icon-stage" data-stage="2">
                 <span class="quickadd-node route-node" data-flow-node data-index="03" aria-hidden="true">03</span>
                 <span class="flow-app-icon"><img src="assets\imges\logo.png" alt=""></span>
-                <b class="flow-caption">SpendTrack</b>
+                <b class="flow-caption">Spend<span class="flow-caption-accent">Track</span></b>
               </section>
               <section class="quickadd-stage category-stage" data-stage="3">
                 <span class="quickadd-node route-node" data-flow-node data-index="04" aria-hidden="true">04</span>
@@ -315,10 +316,9 @@
                     <div class="confirm-success"><span>✓</span><b>Ready to add</b></div>
                     <div class="confirm-transaction"><span class="confirm-category-icon"><svg class="category-icon">
                           <use href="#qicon-shopping" />
-                        </svg></span><span><b data-tx-category>Shopping</b><small><span data-tx-app>PhonePe</span> · UPI
-                          · <span data-tx-date>19 Oct 2026</span> · <span data-tx-time>10:35
-                            am</span></small></span><strong data-tx-amount>− ₹114</strong></div>
-                    <div class="confirm-description"><small>TRANSACTION</small><span data-tx-description>Paid to
+                        </svg></span><span class="confirm-transaction-copy"><b data-tx-category>Shopping</b><small>UPI</small></span>
+                      <span class="confirm-transaction-meta"><strong data-tx-amount>− ₹114</strong><small data-tx-date>22 Oct 2026</small></span></div>
+                    <div class="confirm-description"><small>Description</small><span data-tx-description>Paid to
                         Flipkart</span></div>
                     <button class="confirm-done" type="button" data-confirm-done>Done <span>✓</span></button>
                   </div>
@@ -336,14 +336,16 @@
                       </div>
                       <div class="phone-list-title">Recent transactions <small>just now</small></div>
                       <div class="phone-transactions" data-home-transactions>
-                        <div class="phone-transaction"><i class="tx-badge purple-tint"><svg class="category-icon">
-                              <use href="#qicon-personal" />
-                            </svg></i><span><b>Personal care</b><small>UPI · Today</small></span><strong
-                            class="negative-amount">− ₹10</strong></div>
                         <div class="phone-transaction"><i class="tx-badge blue-tint"><svg class="category-icon">
+                              <use href="#qicon-personal" />
+                            </svg></i><span><b>Personal care</b><small>Card</small></span><span
+                            class="phone-transaction-meta"><strong class="negative-amount">− ₹2000</strong><small>Oct 21,
+                              2026</small></span></div>
+                        <div class="phone-transaction"><i class="tx-badge green-tint"><svg class="category-icon">
                               <use href="#qicon-bonus" />
-                            </svg></i><span><b>Bonus</b><small>Cash · Today</small></span><strong
-                            class="positive-amount">+ ₹1,000</strong></div>
+                            </svg></i><span><b>Bonus</b><small>Bank Account</small></span><span
+                            class="phone-transaction-meta"><strong class="positive-amount">+ ₹1,000</strong><small>Oct
+                              20, 2026</small></span></div>
                       </div>
                     </div>
                   </div>
@@ -391,21 +393,27 @@
               class="shared-progress-label"><i></i> Shared expenses are in progress</span>
           </div>
           <div class="feature-ui shared-ui" aria-hidden="true">
-            <div class="shared-ui-heading"><div><small>SHARED SPACE</small><b>Your groups</b></div><span>2 groups</span></div>
+            <div class="shared-ui-heading">
+              <div><small>SHARED SPACE</small><b>Your groups</b></div><span>2 groups</span>
+            </div>
 
             <div class="shared-group">
               <div class="shared-avatars">
-                <span class="person-avatar avatar-mint">D</span><span class="person-avatar avatar-purple">S</span><span class="person-avatar avatar-orange">A</span><span class="person-avatar avatar-blue">R</span>
+                <span class="person-avatar avatar-mint">D</span><span class="person-avatar avatar-purple">S</span><span
+                  class="person-avatar avatar-orange">A</span><span class="person-avatar avatar-blue">R</span>
               </div>
-              <div class="shared-group-info"><b>Weekend trip</b><small>Trip expenses · Shared with your group</small></div>
+              <div class="shared-group-info"><b>Weekend trip</b><small>Trip expenses · Shared with your group</small>
+              </div>
               <div class="shared-group-total"><strong>₹8,450</strong><small>Across 4 people</small></div>
             </div>
 
             <div class="shared-group">
               <div class="shared-avatars">
-                <span class="person-avatar avatar-mint">D</span><span class="person-avatar avatar-blue">M</span><span class="person-avatar avatar-orange">K</span>
+                <span class="person-avatar avatar-mint">D</span><span class="person-avatar avatar-blue">M</span><span
+                  class="person-avatar avatar-orange">K</span>
               </div>
-              <div class="shared-group-info"><b>Flat expenses</b><small>Rent &amp; bills · Shared with roommates</small></div>
+              <div class="shared-group-info"><b>Flat expenses</b><small>Rent &amp; bills · Shared with roommates</small>
+              </div>
               <div class="shared-group-total"><strong>₹12,300</strong><small>Across 3 people</small></div>
             </div>
 
@@ -414,6 +422,7 @@
             </div>
           </div>
         </article>
+      </div>
       </div>
     </section>
 
@@ -443,6 +452,60 @@
               <p>Use your insights to plan with more confidence.</p>
             </div><span class="step-symbol">↗</span>
           </article>
+        </div>
+      </div>
+      <div class="container how-compare">
+        <div class="section-heading">
+          <h2>From “where did it go?”<br><span class="muted-heading">to “I know.”</span></h2>
+          <p>Drag the handle to compare a month without a routine and a month with SpendTrack.</p>
+        </div>
+
+        <div class="cmp" id="cmp">
+          <div class="cmp-layer cmp-before" aria-hidden="true">
+            <span class="cmp-tag">Without a routine</span>
+            <span class="cmp-note" style="left:5%;top:20%;--r:-4deg">Where did ₹12,000 go?</span>
+            <span class="cmp-note" style="left:22%;top:38%;--r:3deg">Rent… did I pay it?</span>
+            <span class="cmp-note" style="left:4%;top:56%;--r:-2deg">UPI screenshots everywhere</span>
+            <span class="cmp-note" style="left:26%;top:72%;--r:4deg"><s>Notes app list</s> forgot to update</span>
+            <span class="cmp-note" style="left:8%;top:84%;--r:-3deg;opacity:.8">Month-end surprise</span>
+          </div>
+
+          <div class="cmp-layer cmp-after">
+            <span class="cmp-tag">With SpendTrack</span>
+            <div class="cmp-clean">
+              <div class="cmp-two">
+                <div class="cmp-row"><small>Income</small><b class="cmp-pos">₹27,600</b></div>
+                <div class="cmp-row"><small>Spent</small><b class="cmp-neg">₹12,619</b></div>
+              </div>
+              <div class="cmp-insight"><em>↘</em><span>Your highest spending category is <b>Fees &amp; charges</b>
+                  (₹5,000).</span></div>
+              <div class="cmp-row cmp-line cmp-transaction">
+                <span class="cmp-ic" style="background:#143b33;color:#6fc3a0"><svg viewBox="0 0 24 24">
+                    <path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18" />
+                  </svg></span>
+                <div class="cmp-txn-name"><b>Fees &amp; charges</b><small>UPI</small></div>
+                <div class="cmp-txn-meta"><b>− ₹5,000</b><small>Sep 24, 2026</small></div>
+              </div>
+              <div class="cmp-row cmp-line cmp-transaction">
+                <span class="cmp-ic" style="background:#3b3216;color:#e3b341"><svg viewBox="0 0 24 24">
+                    <path d="M4 3v7m3-7v7m-3-4h3m-1.5 4v11M15 3v18m0-18c3 2 4 6 0 9" />
+                  </svg></span>
+                <div class="cmp-txn-name"><b>Food</b><small>Card</small></div>
+                <div class="cmp-txn-meta"><b>− ₹2,500</b><small>Sep 23, 2026</small></div>
+              </div>
+              <div class="cmp-row cmp-line cmp-transaction">
+                <span class="cmp-ic" style="background:#26391d;color:#85d34e"><svg viewBox="0 0 24 24">
+                    <path d="M3 5h2l2 11h11l3-8H6M9 20h.01M17 20h.01M9 10l3-5 3 5M10 10v2m4-2v2" />
+                  </svg></span>
+                <div class="cmp-txn-name"><b>Groceries</b><small>UPI</small></div>
+                <div class="cmp-txn-meta"><b>− ₹90</b><small>Sep 24, 2026</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cmp-knob" aria-hidden="true"></div>
+          <input class="cmp-range" id="cmpRange" type="range" min="4" max="96" value="50"
+            aria-label="Compare a month without a routine and a month with SpendTrack">
         </div>
       </div>
     </section>

@@ -96,9 +96,9 @@ if (quickAddFlow) {
   const doneButton = quickAddFlow.querySelector("[data-confirm-done]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const transactions = [
-    { app: "PhonePe", merchant: "Flipkart", amount: 114, category: "Shopping", description: "Paid to Flipkart · UPI", kind: "spent", time: "10:35 am" },
-    { app: "Google Pay", merchant: "Cafe Coffee", amount: 280, category: "Food", description: "Coffee with friends · UPI", kind: "spent", time: "10:41 am" },
-    { app: "Paytm", merchant: "Cashback received", amount: 1000, category: "Income", description: "Cashback received · UPI", kind: "income", time: "10:48 am" },
+    { app: "PhonePe", merchant: "Flipkart", amount: 114, category: "Shopping", description: "Paid to Flipkart", kind: "spent", time: "10:35 am" },
+    { app: "Google Pay", merchant: "Cafe Coffee", amount: 280, category: "Food", description: "Coffee with friends", kind: "spent", time: "10:41 am" },
+    { app: "Paytm", merchant: "Cashback received", amount: 1000, category: "Income", description: "Cashback received", kind: "income", time: "10:48 am" },
   ];
   let points = [];
   let segmentLengths = [];
@@ -129,8 +129,6 @@ if (quickAddFlow) {
     const today = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
     const values = {
       "[data-tx-merchant]": `${transaction.kind === "income" ? "Received" : "Paid"} ${money(transaction.amount)} · ${transaction.merchant}`,
-      "[data-tx-app]": transaction.app,
-      "[data-tx-time]": transaction.time,
       "[data-tx-category]": transaction.category,
       "[data-tx-date]": today,
       "[data-tx-description]": transaction.description,
@@ -174,13 +172,17 @@ if (quickAddFlow) {
     const title = document.createElement("b");
     title.textContent = transaction.category;
     const subtitle = document.createElement("small");
-    const transactionDate = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
-    subtitle.textContent = `${transaction.app} · ${transactionDate} · ${transaction.time}`;
+    subtitle.textContent = "UPI";
     detail.append(title, subtitle);
+    const meta = document.createElement("span");
+    meta.className = "phone-transaction-meta";
     const amount = document.createElement("strong");
     amount.className = transaction.kind === "income" ? "positive-amount" : "negative-amount";
     amount.textContent = `${transaction.kind === "income" ? "+" : "−"} ${money(transaction.amount)}`;
-    row.append(badge, detail, amount);
+    const date = document.createElement("small");
+    date.textContent = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
+    meta.append(amount, date);
+    row.append(badge, detail, meta);
     list.prepend(row);
     while (list.children.length > 3) list.lastElementChild.remove();
   }
@@ -413,3 +415,32 @@ if (quickAddFlow) {
   else if (typeof reducedMotion.addListener === "function") reducedMotion.addListener(applyMotionPreference);
   applyMotionPreference();
 }
+/* Before / after slider */
+(() => {
+  const box = document.getElementById("cmp");
+  const range = document.getElementById("cmpRange");
+  if (!box || !range) return;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const setX = (value) => box.style.setProperty("--x", `${value}%`);
+  range.addEventListener("input", () => setX(range.value));
+  setX(range.value);
+
+  if (reduceMotion.matches || !("IntersectionObserver" in window)) return;
+  let played = false;
+  new IntersectionObserver((entries, observer) => {
+    if (!entries[0].isIntersecting || played) return;
+    played = true;
+    observer.disconnect();
+    const start = performance.now();
+    const duration = 2200;
+    const sweep = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const value = 50 + Math.sin(t * Math.PI * 2) * 26 * (1 - t * 0.4);
+      setX(value);
+      range.value = value;
+      if (t < 1) requestAnimationFrame(sweep);
+      else { setX(50); range.value = 50; }
+    };
+    if (document.activeElement !== range) requestAnimationFrame(sweep);
+  }, { threshold: 0.5 }).observe(box);
+})();

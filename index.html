@@ -49,10 +49,10 @@
         <div class="hero-actions">
           <a class="button button-primary" href="#early-access">Join the early access list <span
               aria-hidden="true">→</span></a>
-          <a class="text-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
+          <!-- <a class="text-link" href="#features">Explore features <span aria-hidden="true">↓</span></a> -->
         </div>
         <div class="hero-proof">
-          <div class="proof-avatars" aria-hidden="true"><span>D</span><span>S</span><span>₹</span></div>
+          <div class="proof-avatars" aria-hidden="true"><span>D</span><span>S</span><span>A</span></div>
           <p><strong>Built for real-life spending</strong><br><span>Personal expenses. Shared plans. More
               clarity.</span></p>
         </div>
@@ -334,7 +334,7 @@
                         <div><small>Income</small><strong data-home-income>₹29,200</strong><small>Spent</small><strong
                             data-home-spent>₹1,26,579</strong></div><i class="phone-donut"></i>
                       </div>
-                      <div class="phone-list-title">Recent transactions <small>just now</small></div>
+                      <div class="phone-list-title">Recent transactions <small>See All</small></div>
                       <div class="phone-transactions" data-home-transactions>
                         <div class="phone-transaction"><i class="tx-badge blue-tint"><svg class="category-icon">
                               <use href="#qicon-personal" />
@@ -540,9 +540,47 @@
           alt=""></span><span>Spend<span class="brand-accent">Track</span></span></a>
     <p>More clarity. Less money stress.</p>
     <div class="footer-links"><a href="#features">Features</a><a href="#early-access">Early access</a><a
-        href="mailto:hello@spendtrack.in">Contact</a></div>
+        href="contact" data-dev-contact>Contact</a></div>
     <span class="copyright">© <span id="year"></span> SpendTrack. Built with intention.</span>
   </footer>
+  <div class="dev-overlay" id="devOverlay" hidden>
+    <div class="dev-backdrop" data-dev-close></div>
+    <div class="dev-card" role="dialog" aria-modal="true" aria-labelledby="devName" aria-describedby="devBio" tabindex="-1">
+      <button class="dev-close" type="button" data-dev-close aria-label="Close contact card">×</button>
+
+      <div class="dev-avatar">
+        <span class="dev-initial" aria-hidden="true">D</span>
+        <span class="dev-photo"><img src="assets/imges/dalchand-320.png" alt="Portrait of Dal Chand Yogi" width="200" height="200" decoding="async"></span>
+      </div>
+      <h3 id="devName">Dal Chand Yogi</h3>
+      <p class="dev-role">Developer · SpendTrack</p>
+      <p class="dev-bio" id="devBio">I build SpendTrack. Got feedback, an idea or a bug to report? Say hi.</p>
+
+      <div class="dev-links">
+        <a class="dev-link k-instagram" style="--i:0" href="https://www.instagram.com/dalchand_yogi_/" target="_blank" rel="noopener">
+          <span class="dev-ib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg></span>
+          <span><b>Instagram</b><small>@dalchand_yogi_</small></span><i aria-hidden="true">↗</i>
+        </a>
+        <a class="dev-link k-linkedin" style="--i:1" href="https://www.linkedin.com/in/dalchand-yogi-234143296/" target="_blank" rel="noopener">
+          <span class="dev-ib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M8 10.5V16M8 7.8v.01M12 16v-5.5m0 2.5c0-2.8 4-3.2 4 0v3"/></svg></span>
+          <span><b>LinkedIn</b><small>in/dalchand-yogi</small></span><i aria-hidden="true">↗</i>
+        </a>
+        <a class="dev-link k-x" style="--i:2" href="https://x.com/DalChand_Dev" target="_blank" rel="noopener">
+          <span class="dev-ib"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z"/></svg></span>
+          <span><b>X</b><small>@Dalchand_Dev</small></span><i aria-hidden="true">↗</i>
+        </a>
+        <a class="dev-link k-gmail" style="--i:3" href="mailto:dalchandyogi2006@gmail.com">
+          <span class="dev-ib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.8l8.2 6.2 8.2-6.2"/></svg></span>
+          <span><b>Email</b><small>dalchandyogi2006@gmail.com</small></span><i aria-hidden="true">↗</i>
+        </a>
+      </div>
+
+      <button class="dev-copy" type="button" data-dev-copy data-email="dalchandyogi2006@gmail.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.8l8.2 6.2 8.2-6.2"/></svg>
+        <span>Copy email</span>
+      </button>
+    </div>
+  </div>
   <script src="assets/js/script.js"></script>
   <script src="assets/js/reports.js"></script>
   <script src="assets/js/waitlist.js"></script>

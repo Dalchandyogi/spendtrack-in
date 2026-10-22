@@ -444,3 +444,91 @@ if (quickAddFlow) {
     if (document.activeElement !== range) requestAnimationFrame(sweep);
   }, { threshold: 0.5 }).observe(box);
 })();
+
+/* Developer contact popup */
+(() => {
+  const overlay = document.getElementById("devOverlay");
+  const trigger = document.querySelector("[data-dev-contact]");
+  if (!overlay || !trigger) return;
+  const card = overlay.querySelector(".dev-card");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let lastFocus = null;
+  let closing = false;
+
+  const photo = overlay.querySelector(".dev-avatar img");
+  if (photo) {
+    const removePhoto = () => photo.closest(".dev-photo")?.remove();
+    photo.addEventListener("error", removePhoto);
+    if (photo.complete && !photo.naturalWidth) removePhoto();
+  }
+
+  const focusables = () => [...card.querySelectorAll("a[href], button")].filter((el) => el.offsetParent !== null);
+
+  function openCard() {
+    if (!overlay.hidden) return;
+    lastFocus = document.activeElement;
+    const gap = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty("--dev-sbw", `${gap}px`);
+    document.documentElement.classList.add("dev-lock");
+    overlay.classList.remove("is-closing");
+    overlay.hidden = false;
+    card.focus({ preventScroll: true });
+  }
+
+  function closeCard() {
+    if (overlay.hidden || closing) return;
+    const finish = () => {
+      overlay.hidden = true;
+      overlay.classList.remove("is-closing");
+      document.documentElement.classList.remove("dev-lock");
+      closing = false;
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    };
+    if (reduceMotion.matches) return finish();
+    closing = true;
+    overlay.classList.add("is-closing");
+    setTimeout(finish, 280);
+  }
+
+  trigger.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    openCard();
+  });
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target.closest("[data-dev-close]")) {
+      closeCard();
+      return;
+    }
+    const copyButton = event.target.closest("[data-dev-copy]");
+    if (!copyButton) return;
+    const label = copyButton.querySelector("span");
+    const original = label.textContent;
+    const done = () => {
+      copyButton.classList.add("is-done");
+      label.textContent = "Copied ✓";
+      setTimeout(() => { copyButton.classList.remove("is-done"); label.textContent = original; }, 1700);
+    };
+    const email = copyButton.dataset.email;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, done);
+    else {
+      try {
+        const box = document.createElement("textarea");
+        box.value = email; document.body.appendChild(box); box.select(); document.execCommand("copy"); box.remove();
+      } catch (error) { /* Clipboard fallback is best effort. */ }
+      done();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden) return;
+    if (event.key === "Escape") { closeCard(); return; }
+    if (event.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (event.shiftKey && (document.activeElement === first || document.activeElement === card)) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+})();

@@ -96,9 +96,9 @@ if (quickAddFlow) {
   const doneButton = quickAddFlow.querySelector("[data-confirm-done]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const transactions = [
-    { app: "PhonePe", merchant: "Flipkart", amount: 114, category: "Shopping", description: "Paid to Flipkart · UPI", kind: "spent", time: "10:35 am" },
-    { app: "Google Pay", merchant: "Cafe Coffee", amount: 280, category: "Food", description: "Coffee with friends · UPI", kind: "spent", time: "10:41 am" },
-    { app: "Paytm", merchant: "Cashback received", amount: 1000, category: "Income", description: "Cashback received · UPI", kind: "income", time: "10:48 am" },
+    { app: "PhonePe", merchant: "Flipkart", amount: 114, category: "Shopping", description: "Paid to Flipkart", kind: "spent", time: "10:35 am" },
+    { app: "Google Pay", merchant: "Cafe Coffee", amount: 280, category: "Food", description: "Coffee with friends", kind: "spent", time: "10:41 am" },
+    { app: "Paytm", merchant: "Cashback received", amount: 1000, category: "Income", description: "Cashback received", kind: "income", time: "10:48 am" },
   ];
   let points = [];
   let segmentLengths = [];
@@ -129,8 +129,6 @@ if (quickAddFlow) {
     const today = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
     const values = {
       "[data-tx-merchant]": `${transaction.kind === "income" ? "Received" : "Paid"} ${money(transaction.amount)} · ${transaction.merchant}`,
-      "[data-tx-app]": transaction.app,
-      "[data-tx-time]": transaction.time,
       "[data-tx-category]": transaction.category,
       "[data-tx-date]": today,
       "[data-tx-description]": transaction.description,
@@ -174,13 +172,17 @@ if (quickAddFlow) {
     const title = document.createElement("b");
     title.textContent = transaction.category;
     const subtitle = document.createElement("small");
-    const transactionDate = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
-    subtitle.textContent = `${transaction.app} · ${transactionDate} · ${transaction.time}`;
+    subtitle.textContent = "UPI";
     detail.append(title, subtitle);
+    const meta = document.createElement("span");
+    meta.className = "phone-transaction-meta";
     const amount = document.createElement("strong");
     amount.className = transaction.kind === "income" ? "positive-amount" : "negative-amount";
     amount.textContent = `${transaction.kind === "income" ? "+" : "−"} ${money(transaction.amount)}`;
-    row.append(badge, detail, amount);
+    const date = document.createElement("small");
+    date.textContent = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(new Date());
+    meta.append(amount, date);
+    row.append(badge, detail, meta);
     list.prepend(row);
     while (list.children.length > 3) list.lastElementChild.remove();
   }
@@ -413,3 +415,120 @@ if (quickAddFlow) {
   else if (typeof reducedMotion.addListener === "function") reducedMotion.addListener(applyMotionPreference);
   applyMotionPreference();
 }
+/* Before / after slider */
+(() => {
+  const box = document.getElementById("cmp");
+  const range = document.getElementById("cmpRange");
+  if (!box || !range) return;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const setX = (value) => box.style.setProperty("--x", `${value}%`);
+  range.addEventListener("input", () => setX(range.value));
+  setX(range.value);
+
+  if (reduceMotion.matches || !("IntersectionObserver" in window)) return;
+  let played = false;
+  new IntersectionObserver((entries, observer) => {
+    if (!entries[0].isIntersecting || played) return;
+    played = true;
+    observer.disconnect();
+    const start = performance.now();
+    const duration = 2200;
+    const sweep = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const value = 50 + Math.sin(t * Math.PI * 2) * 26 * (1 - t * 0.4);
+      setX(value);
+      range.value = value;
+      if (t < 1) requestAnimationFrame(sweep);
+      else { setX(50); range.value = 50; }
+    };
+    if (document.activeElement !== range) requestAnimationFrame(sweep);
+  }, { threshold: 0.5 }).observe(box);
+})();
+
+/* Developer contact popup */
+(() => {
+  const overlay = document.getElementById("devOverlay");
+  const trigger = document.querySelector("[data-dev-contact]");
+  if (!overlay || !trigger) return;
+  const card = overlay.querySelector(".dev-card");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let lastFocus = null;
+  let closing = false;
+
+  const photo = overlay.querySelector(".dev-avatar img");
+  if (photo) {
+    const removePhoto = () => photo.closest(".dev-photo")?.remove();
+    photo.addEventListener("error", removePhoto);
+    if (photo.complete && !photo.naturalWidth) removePhoto();
+  }
+
+  const focusables = () => [...card.querySelectorAll("a[href], button")].filter((el) => el.offsetParent !== null);
+
+  function openCard() {
+    if (!overlay.hidden) return;
+    lastFocus = document.activeElement;
+    const gap = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty("--dev-sbw", `${gap}px`);
+    document.documentElement.classList.add("dev-lock");
+    overlay.classList.remove("is-closing");
+    overlay.hidden = false;
+    card.focus({ preventScroll: true });
+  }
+
+  function closeCard() {
+    if (overlay.hidden || closing) return;
+    const finish = () => {
+      overlay.hidden = true;
+      overlay.classList.remove("is-closing");
+      document.documentElement.classList.remove("dev-lock");
+      closing = false;
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    };
+    if (reduceMotion.matches) return finish();
+    closing = true;
+    overlay.classList.add("is-closing");
+    setTimeout(finish, 280);
+  }
+
+  trigger.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    openCard();
+  });
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target.closest("[data-dev-close]")) {
+      closeCard();
+      return;
+    }
+    const copyButton = event.target.closest("[data-dev-copy]");
+    if (!copyButton) return;
+    const label = copyButton.querySelector("span");
+    const original = label.textContent;
+    const done = () => {
+      copyButton.classList.add("is-done");
+      label.textContent = "Copied ✓";
+      setTimeout(() => { copyButton.classList.remove("is-done"); label.textContent = original; }, 1700);
+    };
+    const email = copyButton.dataset.email;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, done);
+    else {
+      try {
+        const box = document.createElement("textarea");
+        box.value = email; document.body.appendChild(box); box.select(); document.execCommand("copy"); box.remove();
+      } catch (error) { /* Clipboard fallback is best effort. */ }
+      done();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden) return;
+    if (event.key === "Escape") { closeCard(); return; }
+    if (event.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (event.shiftKey && (document.activeElement === first || document.activeElement === card)) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+})();

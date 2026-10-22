@@ -19,8 +19,8 @@
     ["Where the money went", "The donut splits your total spend by category with a percentage for each, so the biggest slice stands out.", "Your biggest category at a glance."],
     ["Categories, ranked", "Top categories are ranked by amount with their share of the total, using the same icons and colors as your transactions.", "What to cut first if you want to spend less."]
   ];
-  const rank = categories.map(([n,c,a,p,icon]) => `<div class="demo-rank-row"><span class="demo-icon" style="--c:${c}" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#${icon}"></use></svg></span><div><strong>${n}</strong><div class="demo-track"><i style="--w:${p};--c:${c}"></i></div></div><div><strong>${a}</strong><br><small>${p} of total</small></div></div>`).join("");
-  const MONTHS = [["May",9000,4000],["Jun",14000,6200],["Jul",11000,5000],["Aug",18000,7500],["Sep",27600,12619],["Oct",15000,9000]];
+  const rank = categories.map(([n, c, a, p, icon]) => `<div class="demo-rank-row"><span class="demo-icon" style="--c:${c}" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#${icon}"></use></svg></span><div><strong>${n}</strong><div class="demo-track"><i style="--w:${p};--c:${c}"></i></div></div><div><strong>${a}</strong><br><small>${p} of total</small></div></div>`).join("");
+  const MONTHS = [["May", 9000, 4000], ["Jun", 14000, 6200], ["Jul", 11000, 5000], ["Aug", 18000, 7500], ["Sep", 27600, 12619], ["Oct", 15000, 9000]];
   const MONTH_MAX = 30000;
   const money = n => "₹" + n.toLocaleString("en-IN");
   const bars = MONTHS.map(([m, inc, sp]) =>
@@ -28,8 +28,15 @@
   ).join("");
   const monthLabels = MONTHS.map(([m]) => `<span>${m}</span>`).join("");
   const TREND = {
-    w: 560, h: 300, l: 54, r: 540, t: 64, b: 248, max: 3000,
-    data: [1200,1250,1700,1820,2000,2300,2520,2280,2160,2200,2230,2200,2350,2600,2240,2420,2800,3500,2170,2150,2000,2100,2200,2400,2210,2650,2260,2200,2200,3000]
+    w: 560, h: 300, l: 54, r: 540, t: 64, b: 248, max: 4000,
+    data: [
+      1400, 1480, 1550, 1500, 1740,
+      1850, 2020, 2180, 2320, 2410,
+      2350, 2280, 2460, 2680, 2950,
+      3150, 3380, 3220, 2980, 2760,
+      2580, 2690, 2910, 3180, 3420,
+      3250, 2980, 2820, 3100, 3350, 3400
+    ]
   };
   const TIP_W = 132, TIP_H = 50;
   const trendX = i => +(TREND.l + i * (TREND.r - TREND.l) / (TREND.data.length - 1)).toFixed(1);
@@ -38,18 +45,18 @@
 
   function monotonePath(pts) {
     const n = pts.length, dx = [], m = [], tg = [];
-    for (let i = 0; i < n - 1; i++) { dx[i] = pts[i+1][0] - pts[i][0]; m[i] = (pts[i+1][1] - pts[i][1]) / dx[i]; }
-    tg[0] = m[0]; tg[n-1] = m[n-2];
-    for (let i = 1; i < n - 1; i++) tg[i] = m[i-1] * m[i] <= 0 ? 0 : (m[i-1] + m[i]) / 2;
+    for (let i = 0; i < n - 1; i++) { dx[i] = pts[i + 1][0] - pts[i][0]; m[i] = (pts[i + 1][1] - pts[i][1]) / dx[i]; }
+    tg[0] = m[0]; tg[n - 1] = m[n - 2];
+    for (let i = 1; i < n - 1; i++) tg[i] = m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2;
     for (let i = 0; i < n - 1; i++) {
-      if (m[i] === 0) { tg[i] = tg[i+1] = 0; continue; }
-      const a = tg[i] / m[i], c = tg[i+1] / m[i], s = a*a + c*c;
-      if (s > 9) { const k = 3 / Math.sqrt(s); tg[i] = k * a * m[i]; tg[i+1] = k * c * m[i]; }
+      if (m[i] === 0) { tg[i] = tg[i + 1] = 0; continue; }
+      const a = tg[i] / m[i], c = tg[i + 1] / m[i], s = a * a + c * c;
+      if (s > 9) { const k = 3 / Math.sqrt(s); tg[i] = k * a * m[i]; tg[i + 1] = k * c * m[i]; }
     }
     let d = `M${pts[0][0]} ${pts[0][1]}`;
     for (let i = 0; i < n - 1; i++) {
       const h = dx[i] / 3;
-      d += ` C${(pts[i][0] + h).toFixed(1)} ${(pts[i][1] + tg[i] * h).toFixed(1)} ${(pts[i+1][0] - h).toFixed(1)} ${(pts[i+1][1] - tg[i+1] * h).toFixed(1)} ${pts[i+1][0]} ${pts[i+1][1]}`;
+      d += ` C${(pts[i][0] + h).toFixed(1)} ${(pts[i][1] + tg[i] * h).toFixed(1)} ${(pts[i + 1][0] - h).toFixed(1)} ${(pts[i + 1][1] - tg[i + 1] * h).toFixed(1)} ${pts[i + 1][0]} ${pts[i + 1][1]}`;
     }
     return d;
   }
@@ -58,14 +65,14 @@
     const { w, h, l, r, t, b, data } = TREND;
     const pts = data.map((v, i) => [trendX(i), trendY(v)]);
     const line = monotonePath(pts);
-    const area = `${line} L${pts[pts.length-1][0]} ${b} L${pts[0][0]} ${b} Z`;
-    const yTicks = [0, 1000, 2000, 3000].map(v =>
+    const area = `${line} L${pts[pts.length - 1][0]} ${b} L${pts[0][0]} ${b} Z`;
+    const yTicks = [0, 1000, 2000, 3000, 4000].map(v =>
       `<line class="${v === 0 ? "trend-axis" : "trend-grid"}" x1="${l}" x2="${r}" y1="${trendY(v)}" y2="${trendY(v)}"/>` +
       `<text class="trend-label" x="${l - 12}" y="${trendY(v) + 4}" text-anchor="end">${v === 0 ? "₹0" : "₹" + v / 1000 + "K"}</text>`).join("");
     const xTicks = [1, 5, 10, 15, 20, 25, 30].map(d =>
-      `<line class="trend-axis" x1="${trendX(d-1)}" x2="${trendX(d-1)}" y1="${b}" y2="${b + 5}"/>` +
-      `<text class="trend-label" x="${trendX(d-1)}" y="${b + 24}" text-anchor="middle">${d}</text>`).join("");
-    return `<article class="report-demo" data-trend role="img" aria-label="Daily spending for September. The highest day is 17 Sep at ₹2,800."><h3>Spending Trend <span class="demo-chip" style="float:right">Daily</span></h3><svg class="trend-svg" viewBox="0 0 ${w} ${h}" aria-hidden="true"><defs><linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4de09a" stop-opacity=".26"/><stop offset="1" stop-color="#4de09a" stop-opacity="0"/></linearGradient></defs>${yTicks}<line class="trend-axis" x1="${l}" x2="${l}" y1="${t}" y2="${b}"/>${xTicks}<path class="trend-area" d="${area}"/><path class="trend-line" pathLength="1" d="${line}"/><rect class="trend-hit" x="${l}" y="${t - 24}" width="${r - l}" height="${b - t + 24}"/><g class="trend-pin"><line class="trend-guide"/><g class="trend-cursor"><circle class="trend-halo" r="11"/><circle class="trend-dot" r="5.5"/><g class="trend-tip"><rect rx="12" width="${TIP_W}" height="${TIP_H}"/><text class="tip-date"></text><text class="tip-amt"></text></g></g></g></svg></article>`;
+      `<line class="trend-axis" x1="${trendX(d - 1)}" x2="${trendX(d - 1)}" y1="${b}" y2="${b + 5}"/>` +
+      `<text class="trend-label" x="${trendX(d - 1)}" y="${b + 24}" text-anchor="middle">${d}</text>`).join("");
+    return `<article class="report-demo" data-trend role="img" aria-label="Daily spending for September. The highest day is 25 Sep at ₹3,420."><h3>Spending Trend <span class="demo-chip" style="float:right">Daily</span></h3><svg class="trend-svg" viewBox="0 0 ${w} ${h}" aria-hidden="true"><defs><linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4de09a" stop-opacity=".26"/><stop offset="1" stop-color="#4de09a" stop-opacity="0"/></linearGradient></defs>${yTicks}<line class="trend-axis" x1="${l}" x2="${l}" y1="${t}" y2="${b}"/>${xTicks}<path class="trend-area" d="${area}"/><path class="trend-line" pathLength="1" d="${line}"/><rect class="trend-hit" x="${l}" y="${t - 24}" width="${r - l}" height="${b - t + 24}"/><g class="trend-pin"><line class="trend-guide"/><g class="trend-cursor"><circle class="trend-halo" r="11"/><circle class="trend-dot" r="5.5"/><g class="trend-tip"><rect rx="12" width="${TIP_W}" height="${TIP_H}"/><text class="tip-date"></text><text class="tip-amt"></text></g></g></g></svg></article>`;
   }
 
   function setupTrend(card) {
@@ -96,7 +103,7 @@
   }
   const DONUT = {
     r: 46, stroke: 18, gap: 0,
-    parts: [["Fees & charges","#6fc3a0",40],["Food","#e3b341",20],["Shopping","#a855f7",17],["Groceries","#5aad3f",10],["Bills","#4a90e2",8],["Other","#5b6469",5]]
+    parts: [["Fees & charges", "#6fc3a0", 40], ["Food", "#e3b341", 20], ["Shopping", "#a855f7", 17], ["Groceries", "#5aad3f", 10], ["Bills", "#4a90e2", 8], ["Other", "#5b6469", 5]]
   };
   function donutHTML() {
     const C = 2 * Math.PI * DONUT.r;
@@ -126,13 +133,13 @@
     const trackTop = track.getBoundingClientRect().top + scrollY;
     const pinTop = parseFloat(getComputedStyle(pinned).top) || 0;
     const distance = Math.max(1, track.offsetHeight - pinned.offsetHeight);
-    return {start: trackTop - pinTop, distance};
+    return { start: trackTop - pinTop, distance };
   }
   const dotButtons = steps.map((_, index) => {
     const button = document.createElement("button"); button.className = "reports-dot"; button.type = "button";
-    button.setAttribute("aria-label", `Go to report ${index+1}: ${steps[index][0]}`);
+    button.setAttribute("aria-label", `Go to report ${index + 1}: ${steps[index][0]}`);
     button.addEventListener("click", () => {
-      const {start, distance} = pinMetrics();
+      const { start, distance } = pinMetrics();
       window.scrollTo({
         top: start + (index + 0.5) * distance / steps.length,
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
@@ -171,9 +178,9 @@
   function activate(index) {
     if (index === active) return; active = index; root.dataset.step = index;
     title.textContent = steps[index][0]; description.textContent = steps[index][1]; takeaway.textContent = steps[index][2];
-    progress.firstChild.textContent = `${index+1} / 6`;
-    dotButtons.forEach((b,i) => i === index ? b.setAttribute("aria-current","step") : b.removeAttribute("aria-current"));
-    cardsEl.forEach((card,i) => card.classList.toggle("is-active", i === index));
+    progress.firstChild.textContent = `${index + 1} / 6`;
+    dotButtons.forEach((b, i) => i === index ? b.setAttribute("aria-current", "step") : b.removeAttribute("aria-current"));
+    cardsEl.forEach((card, i) => card.classList.toggle("is-active", i === index));
     if (index === 0) { if (inView) playCounters(); }
     else { cancelAnimationFrame(counterRaf); setCounters(1); }
   }
@@ -181,10 +188,10 @@
     if (queued) return; queued = true;
     requestAnimationFrame(() => {
       queued = false;
-      const {start, distance} = pinMetrics();
+      const { start, distance } = pinMetrics();
       const p = Math.max(0, Math.min(1, (scrollY - start) / distance));
       activate(Math.min(steps.length - 1, Math.floor(p * steps.length)));
     });
   }
-  window.addEventListener("scroll", onScroll, {passive:true}); window.addEventListener("resize", onScroll, {passive:true}); onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll, { passive: true }); onScroll();
 })();

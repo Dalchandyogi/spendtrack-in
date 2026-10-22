@@ -156,6 +156,11 @@ input {
   outline-offset: 6px;
   border-radius: 4px;
 }
+
+.header-cta:hover {
+  background: var(--mint);
+  color: #06201f;
+}
 .button {
   display: inline-flex;
   align-items: center;
@@ -3714,11 +3719,33 @@ h1 {
   padding-top: 14px;
   color: #8197a5;
   font-size: 9px;
+  display: flex;
+  align-items: center;
 }
 .privacy-note span {
   color: var(--mint);
   margin-right: 5px;
+  font-size: 1.1rem;
+  display: inline-block;
+  animation: dotGlow 5s ease-in-out infinite;
 }
+
+@keyframes dotGlow {
+  0%, 100% {
+    opacity: 0.5;
+    text-shadow: 0 0 2px var(--mint);
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px var(--mint),
+      0 0 12px var(--mint);
+    transform: scale(1.1);
+  }
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
